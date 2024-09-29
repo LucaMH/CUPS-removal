@@ -1,4 +1,4 @@
-[![ansible-lint](https://github.com/LucaMH/CUPS_removal-private/actions/workflows/anisble-lint.yaml/badge.svg)](https://github.com/LucaMH/CUPS_removal-private/actions/workflows/anisble-lint.yaml)
+[![ansible-lint](https://github.com/LucaMH/CUPS-removal/actions/workflows/anisble-lint.yaml/badge.svg)](https://github.com/LucaMH/CUPS-removal/actions/workflows/anisble-lint.yaml)
 
 # Playbook to remove CUPS completly from systems due to recent CUPS vulnerabilities
 
