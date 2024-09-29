@@ -1,0 +1,47 @@
+---
+- name: Playbook to remove CUPS related folders and packages
+  hosts: all
+  gather_facts: true
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+
+    - name: GENERAL | remove packages
+      ansible.builtin.package:
+        name:
+          - cups
+          - cups-bsd
+          - cups-client
+          - cups-common
+          - cups-core-drivers
+          - cups-daemon
+          - cups-filters
+          - cups-filters-core-drivers
+          - cups-ppdc
+          - cups-server-common
+          - cups-browsed
+        state: absent
+
+    - name: SNAP | remove packages
+      community.general.snap:
+        name:
+          - cups-proxyd
+          - cups-browsed
+          - cups
+        state: absent
+      failed_when: false
+      when:
+        - "'snap' in ansible_env.PATH"
+
+    - name: GENERAL | Remove multiple directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /etc/cups
+        - /var/spool/cups
+        - /var/cache/cups
+        - /var/log/cups
+        - /var/lib/cups
+        - /var/snap/cups

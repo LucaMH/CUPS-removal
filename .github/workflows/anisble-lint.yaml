@@ -1,0 +1,21 @@
+name: ansible-lint
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  linting:
+    name: Ansible Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v4
+
+      - name: Add Ansible
+        run: sudo apt-get install -y ansible
+
+      - name: Linting
+        uses: ansible/ansible-lint@main
+        with:
+          requirements_file: "requirements.yaml"
